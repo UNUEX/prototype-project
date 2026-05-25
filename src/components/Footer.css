@@ -1,0 +1,213 @@
+/* components/Footer.css */
+
+.ftr {
+  width: 100%;
+  padding: 48px 0 40px;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+}
+
+/* ====================== СВЕТЛЫЙ РЕЖИМ ====================== */
+.ftr--light {
+  background: #ffffff;
+  color: #111111;
+  border-top: none;
+}
+
+.ftr--light .ftr-logo-text { color: #111111; }
+.ftr--light .ftr-description { color: #6b7280; }
+
+.ftr--light .ftr-icon-link {
+  color: #111111;
+}
+.ftr--light .ftr-icon-link:hover {
+  color: #555555;
+}
+
+.ftr--light .ftr-column-title { color: #111111; }
+.ftr--light .ftr-link { color: #6b7280; }
+.ftr--light .ftr-link:hover { color: #111111; }
+
+.ftr--light .ftr-copyright { color: #6b7280; }
+.ftr--light .ftr-bottom { border-top: 1px solid #e5e7eb; }
+.ftr--light .ftr-legal a { color: #111111; }
+.ftr--light .ftr-legal a:hover { color: #555555; }
+
+/* ====================== ТЁМНЫЙ РЕЖИМ ====================== */
+.ftr--dark {
+  background: #0a0a0f;
+  color: #ffffff;
+  border-top: none;
+}
+
+.ftr--dark .ftr-logo-text { color: #ffffff; }
+.ftr--dark .ftr-description { color: #9ca3af; }
+
+.ftr--dark .ftr-icon-link {
+  color: #ffffff;
+}
+.ftr--dark .ftr-icon-link:hover {
+  color: #9ca3af;
+}
+
+.ftr--dark .ftr-column-title { color: #ffffff; }
+.ftr--dark .ftr-link { color: #9ca3af; }
+.ftr--dark .ftr-link:hover { color: #ffffff; }
+
+.ftr--dark .ftr-copyright { color: #9ca3af; }
+.ftr--dark .ftr-bottom { border-top: 1px solid rgba(255,255,255,0.1); }
+.ftr--dark .ftr-legal a { color: #ffffff; }
+.ftr--dark .ftr-legal a:hover { color: #9ca3af; }
+
+/* ====================== ОБЩАЯ СТРУКТУРА ====================== */
+
+.ftr-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Верхняя секция: бренд слева + колонки справа в одну строку */
+.ftr-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  gap: 48px;
+}
+
+.ftr-brand {
+  max-width: 360px;
+  flex-shrink: 0;
+}
+
+.ftr-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ftr-logo-img {
+  height: 28px;
+  width: auto;
+}
+
+.ftr-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.ftr-description {
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0 0 20px 0;
+}
+
+.ftr-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.ftr-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+/* Колонки — встроены прямо в .ftr-top справа */
+.ftr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 64px;
+}
+
+.ftr-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ftr-column-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0 0 6px 0;
+  text-transform: none;
+}
+
+.ftr-column-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ftr-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-align: left;
+  font-family: inherit;
+}
+
+/* Нижняя часть */
+.ftr-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 28px;
+}
+
+.ftr-copyright {
+  font-size: 13px;
+}
+
+.ftr-legal {
+  display: flex;
+  gap: 28px;
+}
+
+.ftr-legal a {
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+/* ====================== АДАПТИВНОСТЬ ====================== */
+@media (max-width: 1024px) {
+  .ftr-grid { gap: 0 40px; }
+}
+
+@media (max-width: 768px) {
+  .ftr { padding: 40px 0 32px; }
+  .ftr-top {
+    flex-direction: column;
+    margin-bottom: 40px;
+  }
+  .ftr-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+  }
+  .ftr-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .ftr-grid { grid-template-columns: 1fr 1fr; }
+  .ftr-container { padding: 0 20px; }
+}

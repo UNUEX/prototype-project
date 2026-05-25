@@ -1,0 +1,1259 @@
+/* ═══════════════════════════════════════
+           BASE
+        ═══════════════════════════════════════ */
+        .hdr {
+          position: fixed; top: 0; left: 0;
+          width: 100%; z-index: 1000;
+          transition: background 0.4s cubic-bezier(0.4,0,0.2,1),
+                      border-color 0.4s cubic-bezier(0.4,0,0.2,1),
+                      box-shadow 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        /* ═══════════════════════════════════════
+           ТЁМНЫЙ РЕЖИМ (все страницы кроме главной)
+        ═══════════════════════════════════════ */
+        .hdr--dark {
+          background: #0f0f1a;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .hdr--dark.is-scrolled {
+          background: rgba(15,15,26,0.88);
+          backdrop-filter: blur(28px) saturate(180%);
+          -webkit-backdrop-filter: blur(28px) saturate(180%);
+          border-bottom-color: rgba(255,255,255,0.09);
+          box-shadow: 0 1px 40px rgba(0,0,0,0.35);
+        }
+        .hdr--dark.is-solid { background: #0f0f1a; border-bottom-color: rgba(255,255,255,0.08); }
+
+        /* color set in shared nav section below */
+        /* hover/active handled by global !important rules above */
+        .hdr--dark .hdr-nav-icon { opacity: 0.4; }
+        .hdr--dark .chevron { opacity: 0.35; }
+        .hdr--dark .hdr-nav-btn:hover .chevron,
+        .hdr--dark .hdr-nav-btn.active .chevron { opacity: 0.7; }
+
+        .hdr--dark .mega-menu {
+          background: rgba(17,15,28,0.99) !important;
+          backdrop-filter: blur(32px);
+          -webkit-backdrop-filter: blur(32px);
+          border-color: rgba(255,255,255,0.09) !important;
+          box-shadow: 0 28px 70px rgba(0,0,0,0.6), 0 0 0 0.5px rgba(255,255,255,0.04) inset;
+        }
+        .hdr--dark .mega-option:hover { background: rgba(255,255,255,0.05); }
+        .hdr--dark .option-content p { color: rgba(255,255,255,0.85); }
+        .hdr--dark .option-content span { color: rgba(255,255,255,0.3); }
+        .hdr--dark .ic-blue   { background: rgba(99,102,241,0.18); }
+        .hdr--dark .ic-purple { background: rgba(139,92,246,0.18); }
+        .hdr--dark .ic-amber  { background: rgba(251,191,36,0.14); }
+        .hdr--dark .ic-teal   { background: rgba(16,185,129,0.14); }
+
+        .hdr--dark .lang-btn { border-color: rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); }
+        .hdr--dark .lang-btn:hover,
+        .hdr--dark .lang-btn.active { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.18); color: rgba(255,255,255,0.9); }
+        .hdr--dark .globe-icon { color: rgba(255,255,255,0.35); }
+        .hdr--dark .lang-dropdown { background: rgba(17,15,28,0.98); border-color: rgba(255,255,255,0.08); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+        .hdr--dark .lang-option { color: rgba(255,255,255,0.55); }
+        .hdr--dark .lang-option:hover { background: rgba(255,255,255,0.06); color: #fff; }
+        .hdr--dark .lang-option.active { background: rgba(99,102,241,0.12); color: #818cf8; }
+
+        .hdr--dark .btn-ghost { color: rgba(255,255,255,0.5); }
+        .hdr--dark .btn-ghost:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .hdr--dark .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+
+        .hdr--dark .profile-btn { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.09); }
+        .hdr--dark .profile-btn:hover { background: rgba(99,102,241,0.1); border-color: rgba(99,102,241,0.3); }
+        .hdr--dark .profile-name { color: rgba(255,255,255,0.8); }
+        .hdr--dark .profile-count { color: #818cf8; }
+
+        .hdr--dark .burger { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.09); }
+        .hdr--dark .burger:hover { background: rgba(255,255,255,0.09); }
+        .hdr--dark .burger span { background: rgba(255,255,255,0.6); }
+
+        .hdr--dark .mob-drawer { background: rgba(15,13,24,0.98); border-top-color: rgba(255,255,255,0.06); }
+        .hdr--dark .mob-link { color: rgba(255,255,255,0.5); }
+        .hdr--dark .mob-link:hover { background: rgba(255,255,255,0.05); color: #fff; }
+        .hdr--dark .mob-sep { background: rgba(255,255,255,0.07); }
+        .hdr--dark .mob-login { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); color: rgba(255,255,255,0.7); }
+        .hdr--dark .mob-login:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .hdr--dark .mob-register { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; }
+
+        /* ═══════════════════════════════════════
+           СВЕТЛЫЙ РЕЖИМ (только главная страница)
+        ═══════════════════════════════════════ */
+        .hdr--light {
+          background: transparent;
+          border-bottom: none;
+          border-radius: 0 0 14px 14px;
+        }
+        .hdr--light.is-scrolled {
+          background: rgba(245,240,232,0.88);
+          backdrop-filter: blur(28px) saturate(170%);
+          -webkit-backdrop-filter: blur(28px) saturate(170%);
+          border-bottom: none;
+          box-shadow: none;
+          border-radius: 110 110 114px 114px;
+        }
+        .hdr--light.is-solid { background: #F5F0E8; border-bottom-color: rgba(200,185,155,0.28); }
+
+        /* color set in shared nav section below */
+        /* hover/active handled by global !important rules above */
+        .hdr--light .hdr-nav-icon { opacity: 0.5; }
+        .hdr--light .chevron { opacity: 0.4; }
+        .hdr--light .hdr-nav-btn:hover .chevron,
+        .hdr--light .hdr-nav-btn.active .chevron { opacity: 0.8; }
+
+        .hdr--light .mega-menu {
+          background: #ffffff !important;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          border-color: rgba(99,102,241,0.14) !important;
+          box-shadow: 0 8px 16px rgba(0,0,0,0.06), 0 24px 64px rgba(55,48,163,0.1);
+        }
+        .hdr--light .mega-option:hover { background: rgba(99,102,241,0.06); }
+        .hdr--light .option-content p { color: #2E2860; }
+        .hdr--light .option-content span { color: rgba(55,48,163,0.45); }
+        .hdr--light .ic-blue   { background: rgba(99,102,241,0.1); }
+        .hdr--light .ic-purple { background: rgba(139,92,246,0.1); }
+        .hdr--light .ic-amber  { background: rgba(180,130,50,0.1); }
+        .hdr--light .ic-teal   { background: rgba(16,185,129,0.1); }
+
+        .hdr--light .lang-btn { border-color: rgba(99,102,241,0.18); color: rgba(55,48,163,0.6); }
+        .hdr--light .lang-btn:hover,
+        .hdr--light .lang-btn.active { background: rgba(99,102,241,0.06); border-color: rgba(99,102,241,0.3); color: #3730A3; }
+        .hdr--light .globe-icon { color: #818CF8; }
+        .hdr--light .lang-dropdown { background: rgba(250,247,241,0.97); border-color: rgba(99,102,241,0.12); box-shadow: 0 16px 40px rgba(55,48,163,0.12); }
+        .hdr--light .lang-option { color: rgba(55,48,163,0.7); }
+        .hdr--light .lang-option:hover { background: rgba(99,102,241,0.06); color: #3730A3; }
+        .hdr--light .lang-option.active { background: rgba(99,102,241,0.1); color: #4F46E5; }
+
+        .hdr--light .btn-ghost { color: rgba(55,48,163,0.6); }
+        .hdr--light .btn-ghost:hover { color: #3730A3; background: rgba(99,102,241,0.08); }
+        .hdr--light .btn-primary { background: linear-gradient(135deg, #4F46E5, #6366F1); }
+
+        .hdr--light .profile-btn { background: rgba(255,255,255,0.5); border-color: rgba(99,102,241,0.18); }
+        .hdr--light .profile-btn:hover { background: rgba(99,102,241,0.07); border-color: rgba(99,102,241,0.3); }
+        .hdr--light .profile-name { color: rgba(55,48,163,0.85); }
+        .hdr--light .profile-count { color: #818CF8; }
+
+        .hdr--light .burger { background: rgba(255,255,255,0.4); border-color: rgba(99,102,241,0.18); }
+        .hdr--light .burger:hover { background: rgba(99,102,241,0.07); }
+        .hdr--light .burger span { background: #3730A3; }
+
+        .hdr--light .mob-drawer { background: rgba(250,247,241,0.97); border-top-color: rgba(99,102,241,0.1); }
+        .hdr--light .mob-link { color: rgba(55,48,163,0.65); }
+        .hdr--light .mob-link:hover { background: rgba(99,102,241,0.07); color: #3730A3; }
+        .hdr--light .mob-sep { background: rgba(99,102,241,0.08); }
+        .hdr--light .mob-login { background: rgba(99,102,241,0.07); border: 1px solid rgba(99,102,241,0.14); color: #3730A3; }
+        .hdr--light .mob-login:hover { background: rgba(99,102,241,0.12); }
+        .hdr--light .mob-register { background: linear-gradient(135deg, #4F46E5, #6366F1); color: #fff; }
+
+        /* ═══════════════════════════════════════
+           ОБЩИЕ СТРУКТУРНЫЕ СТИЛИ (без цветов)
+        ═══════════════════════════════════════ */
+        .hdr-inner {
+          max-width: 1200px; margin: 0 auto;
+          height: 56px; padding: 0 40px;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          overflow: visible;
+          transition: height 0.38s cubic-bezier(0.4,0,0.2,1);
+        }
+        .hdr.is-scrolled .hdr-inner { height: 50px; }
+        /* Brand stays left, nav stays center, right stays right */
+        .brand { grid-column: 1; justify-self: start; }
+        .nav {
+          grid-column: 2;
+          position: static;
+          left: auto;
+          transform: none;
+          display: flex; align-items: center; gap: 2px;
+          max-width: none;
+          overflow: visible;
+        }
+        .right { grid-column: 3; justify-self: end; }
+
+        /* Brand */
+        .brand-img { height: 44px; width: auto; display: block; transition: opacity 0.2s; }
+        .brand { cursor: pointer; display: flex; align-items: center; }
+
+        /* Nav */
+        .hdr-nav-item { position: relative; overflow: visible; }
+        .hdr-nav-btn {
+          background: transparent;
+          border: none;
+          padding: 7px 11px; border-radius: 8px;
+          font-size: 0.82rem; font-weight: 500; font-family: 'Manrope', var(--font-sans), sans-serif; letter-spacing: -0.1px;
+          cursor: pointer; display: flex; align-items: center; gap: 7px;
+          transition: color 0.2s, background 0.2s; white-space: nowrap;
+          -webkit-appearance: none; appearance: none;
+          outline: none; box-shadow: none; overflow: visible;
+        }
+        .hdr-nav-btn:focus,
+        .hdr-nav-btn:focus-visible,
+        .hdr-nav-btn:active { background: transparent; outline: none; box-shadow: none; }
+        /* Hover only — no persistent bg when menu open */
+        .hdr--dark .hdr-nav-btn { color: rgba(255,255,255,0.6); }
+        .hdr--dark .hdr-nav-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .hdr--light .hdr-nav-btn { color: rgba(55,48,163,0.6); }
+        .hdr--light .hdr-nav-btn:hover { color: #1e1a5e; background: #f9f5f1; }
+
+        .hdr-nav-icon { font-size: 0.72rem; }
+        .chevron {
+          font-size: 0.65rem;
+          transition: transform 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
+        }
+        .chevron.up { transform: rotate(180deg); }
+
+        /* Mega menu */
+        .mega-menu {
+          position: absolute;
+          top: calc(100% + 12px);
+          left: 50%; transform: translateX(-50%);
+          /* Solid fallback background — never transparent */
+          background: #18162a;
+          border-radius: 20px;
+          border: 1px solid rgba(255,255,255,0.1);
+          padding: 12px;
+          width: 460px;
+          /* Enough min-height to show all 4 items */
+          min-height: 200px;
+          z-index: 9999;
+          /* Clip:visible so nothing gets cut off */
+          overflow: visible;
+          animation: megaFade 0.22s cubic-bezier(0.34,1.15,0.64,1);
+        }
+        @keyframes megaFade {
+          from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.97); }
+          to   { opacity: 1; transform: translateX(-50%) translateY(0)   scale(1);    }
+        }
+        .mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+        .mega-option {
+          padding: 14px 12px; border-radius: 14px;
+          display: flex; gap: 12px; align-items: center;
+          cursor: pointer; transition: background 0.18s;
+        }
+        .option-icon {
+          width: 36px; height: 36px; border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .option-content p { font-size: 0.875rem; font-weight: 600; margin: 0 0 2px; }
+        .option-content span { font-size: 0.72rem; }
+
+        /* Right — proper spacing, never overlaps nav */
+        .right {
+          display: flex; align-items: center; gap: 4px;
+        }
+
+        /* Language */
+        .lang-wrap { position: relative; }
+        .lang-btn {
+          display: flex; align-items: center; gap: 6px;
+          background: transparent; border: 1px solid;
+          border-radius: 8px; padding: 5px 9px;
+          font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .globe-icon { font-size: 0.78rem; }
+        .lang-code { letter-spacing: 0.3px; }
+        .lang-dropdown {
+          position: absolute; top: calc(100% + 8px); right: 0;
+          backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+          border: 1px solid; border-radius: 14px; padding: 5px; width: 175px;
+          animation: dropFade 0.2s cubic-bezier(0.34,1.2,0.64,1); z-index: 200;
+        }
+        @keyframes dropFade {
+          from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .lang-option {
+          display: flex; align-items: center; gap: 9px;
+          width: 100%; padding: 8px 11px; border: none;
+          background: transparent; border-radius: 9px; font-size: 0.875rem;
+          cursor: pointer; transition: background 0.15s, color 0.15s;
+        }
+        .lang-flag { font-size: 1rem; }
+        .lang-name { flex: 1; text-align: left; }
+        .lang-check { color: #10B981; font-weight: 700; font-size: 0.78rem; }
+
+        /* Profile */
+        .profile-btn {
+          display: flex; align-items: center; gap: 9px;
+          border: 1px solid; padding: 5px 14px 5px 5px;
+          border-radius: 100px; cursor: pointer; transition: all 0.22s;
+        }
+        .profile-avatar {
+          width: 28px; height: 28px; border-radius: 50%;
+          background: linear-gradient(135deg, #6366F1, #818CF8);
+          display: flex; align-items: center; justify-content: center;
+          color: #fff; font-size: 0.8rem; font-weight: 700; flex-shrink: 0;
+        }
+        .profile-info { display: flex; flex-direction: column; gap: 2px; }
+        .profile-name { display: block; font-size: 0.78rem; font-weight: 600; line-height: 1; }
+        .profile-count { display: block; font-size: 0.68rem; font-weight: 500; line-height: 1; }
+        .profile-count.loading { opacity: 0.4; animation: countPulse 1.2s ease-in-out infinite; }
+        @keyframes countPulse { 0%,100%{opacity:0.4;} 50%{opacity:0.9;} }
+
+        /* Auth */
+        .auth-cluster { display: flex; align-items: center; gap: 6px; }
+        .btn-ghost {
+          background: transparent; border: none;
+          padding: 7px 11px; border-radius: 8px;
+          font-size: 0.82rem; font-weight: 500; font-family: 'Manrope', var(--font-sans), sans-serif; letter-spacing: -0.1px;
+          cursor: pointer; transition: color 0.2s, background 0.2s;
+        }
+        .btn-primary {
+          border: none; padding: 8px 16px; border-radius: 9px;
+          font-size: 0.85rem; font-weight: 700; color: #fff; letter-spacing: -0.1px;
+          cursor: pointer; transition: filter 0.22s, transform 0.22s, box-shadow 0.22s;
+        }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(99,102,241,0.35); }
+
+        /* Burger */
+        .burger {
+          display: none; flex-direction: column;
+          align-items: center; justify-content: center; gap: 5px;
+          width: 36px; height: 36px; border-radius: 9px; border: 1px solid;
+          cursor: pointer; transition: background 0.2s;
+        }
+        .burger span {
+          display: block; width: 15px; height: 1.5px; border-radius: 2px;
+          transition: all 0.28s cubic-bezier(0.4,0,0.2,1); transform-origin: center;
+        }
+        .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* Mobile drawer */
+        .mob-drawer {
+          display: none; flex-direction: column;
+          backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+          border-top: 1px solid; padding: 10px 20px 18px;
+          animation: drawerSlide 0.28s cubic-bezier(0.4,0,0.2,1);
+        }
+        .mob-drawer.open { display: flex; }
+        @keyframes drawerSlide {
+          from { opacity: 0; transform: translateY(-6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .mob-nav { display: flex; flex-direction: column; gap: 2px; }
+        .mob-link {
+          background: none; border: none; padding: 10px 12px; border-radius: 10px;
+          font-size: 0.88rem; font-weight: 500; cursor: pointer;
+          display: flex; align-items: center; gap: 9px;
+          transition: background 0.15s, color 0.15s; text-align: left;
+        }
+        .mob-icon { font-size: 0.78rem; opacity: 0.5; width: 14px; }
+        .mob-sep { height: 1px; margin: 7px 4px; }
+        .mob-auth { display: flex; gap: 8px; margin-top: 10px; padding-top: 10px; }
+        .mob-login, .mob-register {
+          flex: 1; padding: 10px; border-radius: 12px;
+          font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        /* ═══════════════════════════════════════
+           AUTH MODAL — Split v2
+        ═══════════════════════════════════════ */
+        .modal-overlay {
+          position: fixed; inset: 0;
+          background: rgba(10,8,40,0.6);
+          backdrop-filter: blur(18px);
+          -webkit-backdrop-filter: blur(18px);
+          z-index: 9998;
+          display: flex; align-items: center; justify-content: center;
+          padding: 1.5rem;
+          animation: overlayFade 0.3s ease;
+        }
+        @keyframes overlayFade { from { opacity: 0; } }
+
+        .modal-split {
+          display: flex;
+          width: 100%;
+          max-width: 780px;
+          min-height: 520px;
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 40px 100px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2);
+          animation: splitUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+        }
+        @keyframes splitUp {
+          from { opacity: 0; transform: translateY(28px) scale(0.97); }
+          to   { opacity: 1; transform: none; }
+        }
+
+        .split-left {
+          flex: 0 0 42%;
+          background: linear-gradient(150deg, #1e0a4a 0%, #2d1472 30%, #1a3a8a 65%, #0d6fa8 100%);
+          padding: 2.5rem 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          position: relative;
+          overflow: hidden;
+        }
+        .split-left::before {
+          content: '';
+          position: absolute;
+          width: 350px; height: 350px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.07);
+          top: -100px; right: -130px;
+          pointer-events: none;
+        }
+        .split-left::after {
+          content: '';
+          position: absolute;
+          width: 240px; height: 240px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.05);
+          bottom: -70px; left: -70px;
+          pointer-events: none;
+        }
+        .split-left-top { position: relative; z-index: 1; }
+
+        .split-logo {
+          display: flex; align-items: center; gap: 9px;
+          margin-bottom: 2.25rem;
+        }
+        .split-logo-icon {
+          width: 32px; height: 32px;
+          border-radius: 9px;
+          background: rgba(255,255,255,0.12);
+          border: 1px solid rgba(255,255,255,0.18);
+          display: flex; align-items: center; justify-content: center;
+          font-weight: 700; font-size: 13px; color: #fff;
+        }
+        .split-logo-name {
+          font-weight: 600; font-size: 15px;
+          color: rgba(255,255,255,0.9);
+          letter-spacing: 0.02em;
+        }
+        .split-headline {
+          font-size: 24px; font-weight: 600;
+          color: #fff; line-height: 1.3; margin-bottom: 10px;
+        }
+        .split-desc {
+          font-size: 13px;
+          color: rgba(255,255,255,0.42);
+          line-height: 1.65;
+        }
+        .split-stats { display: flex; gap: 1.5rem; position: relative; z-index: 1; }
+        .split-stat-num { font-size: 21px; font-weight: 700; color: #fff; }
+        .split-stat-label { font-size: 11px; color: rgba(255,255,255,0.36); margin-top: 2px; }
+
+        .split-right {
+          flex: 1;
+          background: #ffffff;
+          padding: 2.5rem 2.25rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          position: relative;
+        }
+        .split-close {
+          position: absolute; top: 18px; right: 18px;
+          width: 32px; height: 32px;
+          border-radius: 50%; border: none;
+          background: rgba(0,0,0,0.05);
+          color: #999;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer; font-size: 0.8rem;
+          transition: all 0.2s;
+        }
+        .split-close:hover { background: rgba(0,0,0,0.1); color: #333; transform: rotate(90deg); }
+
+        .split-title { font-size: 21px; font-weight: 600; color: #111; margin-bottom: 4px; }
+        .split-sub { font-size: 13px; color: #888; margin-bottom: 1.75rem; }
+
+        .split-form { display: flex; flex-direction: column; gap: 14px; }
+
+        .split-field { display: flex; flex-direction: column; gap: 5px; }
+        .split-field label {
+          font-size: 12px; font-weight: 500; color: #444; letter-spacing: 0.02em;
+        }
+        .split-field input[type="email"],
+        .split-field input[type="password"],
+        .split-field input[type="text"] {
+          width: 100%;
+          border: 1.5px solid #e8e6ef;
+          border-radius: 10px;
+          padding: 11px 14px;
+          font-size: 14px; color: #111;
+          outline: none;
+          background: #fafafa;
+          transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+          box-sizing: border-box;
+        }
+        .split-field input::placeholder { color: #bbb; }
+        .split-field input:focus {
+          border-color: #5b2fdb;
+          background: #fff;
+          box-shadow: 0 0 0 3px rgba(91,47,219,0.1);
+        }
+
+        .pass-wrap { position: relative; }
+        .pass-wrap input { padding-right: 42px !important; }
+        .split-pass-toggle {
+          position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+          background: none; border: none;
+          color: #bbb; cursor: pointer; padding: 4px;
+          transition: color 0.2s;
+          display: flex; align-items: center; font-size: 0.82rem;
+        }
+        .split-pass-toggle:hover { color: #5b2fdb; }
+
+        .split-row { display: flex; justify-content: space-between; align-items: center; }
+        .split-remember {
+          display: flex; align-items: center; gap: 7px;
+          font-size: 12px; color: #777; cursor: pointer;
+        }
+        .split-remember input[type="checkbox"] { accent-color: #5b2fdb; width: 14px; height: 14px; }
+
+        .split-submit {
+          width: 100%;
+          padding: 13px; border: none; border-radius: 10px;
+          background: linear-gradient(135deg, #2d1472 0%, #5b2fdb 50%, #1a6bdc 100%);
+          background-size: 200% auto;
+          color: #fff; font-size: 14px; font-weight: 500;
+          cursor: pointer; letter-spacing: 0.01em;
+          transition: background-position 0.4s, transform 0.15s, box-shadow 0.2s;
+          margin-top: 4px;
+        }
+        .split-submit:hover:not(:disabled) {
+          background-position: right center;
+          transform: translateY(-1px);
+          box-shadow: 0 8px 24px rgba(91,47,219,0.28);
+        }
+        .split-submit:active { transform: scale(0.98); }
+        .split-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .split-footer-text { text-align: center; margin-top: 1.25rem; font-size: 12px; color: #aaa; }
+        .split-link {
+          background: none; border: none;
+          color: #5b2fdb; font-size: 12px;
+          cursor: pointer; padding: 0;
+          font-family: inherit;
+          transition: color 0.2s;
+        }
+        .split-link:hover { color: #2d1472; text-decoration: underline; }
+
+        @media (max-width: 600px) {
+          .split-left { display: none; }
+          .modal-split { max-width: 400px; }
+        }
+
+        /* ─────────────────────────────────────────
+           RESPONSIVE
+        ───────────────────────────────────────── */
+        @media (max-width: 900px) {
+          .nav { display: none; }
+        }
+        @media (max-width: 768px) {
+          .hdr-inner { padding: 0 20px; }
+          .auth-cluster .btn-ghost,
+          .auth-cluster .btn-primary,
+          .lang-wrap { display: none; }
+          .burger { display: flex; }
+        }
+        @media (max-width: 480px) {
+          .hdr-inner { padding: 0 16px; }
+        }
+
+       
+
+
+        /* В конце файла Header.css, замени существующий блок .brand на этот: */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.brand-text {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3730A3, #6366F1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.brand-img {
+  height: 40px;
+  width: auto;
+}
+
+/* Для светлой темы на главной */
+.hdr--light .brand-text {
+  background: linear-gradient(135deg, #1E1B4B, #4F46E5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Для стеклянного режима до скролла */
+.hdr--glass .brand-text {
+  background: linear-gradient(135deg, #fff, #e0e7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Для стеклянного режима после скролла */
+.hdr--glass.is-scrolled .brand-text {
+  background: linear-gradient(135deg, #3730A3, #6366F1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Для темного режима */
+.hdr--dark .brand-text {
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   ДОБАВИТЬ В Header.css
+   ───────────────────────────────────────────────────────────── */
+
+/* Icon colors — Content dropdown */
+.hdr--dark .ic-violet  { background: rgba(124,58,237,0.18); }
+.hdr--dark .ic-rose    { background: rgba(236,72,153,0.18); }
+.hdr--light .ic-violet { background: rgba(124,58,237,0.1); }
+.hdr--light .ic-rose   { background: rgba(236,72,153,0.1); }
+
+/* Content dropdown — extra header/footer strips */
+.content-dropdown {
+  min-width: 360px;
+}
+
+.content-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 4px;
+}
+.hdr--light .content-dropdown-header {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+.content-dropdown-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.hdr--light .content-dropdown-label {
+  color: rgba(55,48,163,0.4);
+}
+
+.content-dropdown-sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(251,191,36,0.14);
+  color: #fbbf24;
+  letter-spacing: 0.04em;
+}
+.hdr--light .content-dropdown-sub {
+  background: rgba(245,158,11,0.1);
+  color: #d97706;
+}
+
+.content-dropdown-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 16px 10px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #818cf8;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.hdr--light .content-dropdown-footer {
+  border-top-color: rgba(0,0,0,0.06);
+  color: #6366f1;
+}
+.content-dropdown-footer:hover {
+  color: #a5b4fc;
+}
+.hdr--light .content-dropdown-footer:hover {
+  color: #3730a3;
+}
+
+/* Soon badge on mega-option */
+.mega-option--soon {
+  opacity: 0.85;
+  cursor: default;
+  position: relative;
+}
+.mega-option--soon:hover {
+  background: transparent !important;
+  cursor: default;
+}
+
+.soon-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(251,191,36,0.14);
+  color: #fbbf24;
+  white-space: nowrap;
+  align-self: center;
+  flex-shrink: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hdr--light .soon-badge {
+  background: rgba(245,158,11,0.1);
+  color: #d97706;
+}
+/* ── pill = просто обёртка, не меняет layout ── */
+.hdr-inner-pill {
+  display: contents;
+}
+/* ═══════════════════════════════════════
+   СТЕКЛЯННЫЙ РЕЖИМ (GLASS)
+   ═══════════════════════════════════════ */
+
+/* Базовое состояние - прозрачный */
+.hdr--glass {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 0;
+}
+
+/* При скролле — стеклянный эффект */
+.hdr--glass.is-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* Вариант с отступами (как на фото) */
+.hdr--glass.hdr--glass-offset.is-scrolled {
+  width: calc(100% - 40px);
+  left: 20px;
+  right: 20px;
+  border-radius: 28px;
+  top: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(99, 102, 241, 0.1);
+}
+
+/* Анимация появления отступов */
+.hdr--glass.hdr--glass-offset {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== СТИЛИ ДЛЯ ЭЛЕМЕНТОВ В СТЕКЛЯННОМ РЕЖИМЕ (ДО СКРОЛЛА) ========== */
+
+/* Текст навигации до скролла - светлый */
+.hdr--glass .hdr-nav-btn {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hdr--glass .hdr-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.hdr--glass .lang-btn {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hdr--glass .lang-btn:hover,
+.hdr--glass .lang-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.hdr--glass .globe-icon {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hdr--glass .btn-ghost {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hdr--glass .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.hdr--glass .profile-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hdr--glass .profile-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.hdr--glass .profile-name {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hdr--glass .profile-count {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hdr--glass .burger {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hdr--glass .burger:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.hdr--glass .burger span {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Логотип в стеклянном режиме до скролла */
+.hdr--glass .brand-text {
+  background: linear-gradient(135deg, #fff, #e0e7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========== СТИЛИ ДЛЯ ЭЛЕМЕНТОВ ПОСЛЕ СКРОЛЛА ========== */
+
+.hdr--glass.is-scrolled .hdr-nav-btn {
+  color: #1E1B4B;
+}
+
+.hdr--glass.is-scrolled .hdr-nav-btn:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: #3730A3;
+}
+
+.hdr--glass.is-scrolled .lang-btn {
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #1E1B4B;
+}
+
+.hdr--glass.is-scrolled .lang-btn:hover,
+.hdr--glass.is-scrolled .lang-btn.active {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #3730A3;
+}
+
+.hdr--glass.is-scrolled .globe-icon {
+  color: #6366f1;
+}
+
+.hdr--glass.is-scrolled .btn-ghost {
+  color: #4A4580;
+}
+
+.hdr--glass.is-scrolled .btn-ghost:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: #3730A3;
+}
+
+.hdr--glass.is-scrolled .profile-btn {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.hdr--glass.is-scrolled .profile-btn:hover {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.hdr--glass.is-scrolled .profile-name {
+  color: #1E1B4B;
+}
+
+.hdr--glass.is-scrolled .profile-count {
+  color: #6366f1;
+}
+
+.hdr--glass.is-scrolled .burger {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.hdr--glass.is-scrolled .burger:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.hdr--glass.is-scrolled .burger span {
+  background: #1E1B4B;
+}
+
+.hdr--glass.is-scrolled .brand-text {
+  background: linear-gradient(135deg, #3730A3, #6366F1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========== MEGA MENU ДЛЯ СТЕКЛЯННОГО РЕЖИМА ========== */
+
+/* До скролла - тёмный стеклянный */
+.hdr--glass .mega-menu {
+  background: rgba(30, 27, 75, 0.92) !important;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.hdr--glass .mega-option {
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.hdr--glass .mega-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.hdr--glass .option-content p {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+}
+
+.hdr--glass .option-content span {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.72rem;
+}
+
+/* Иконки в тёмном стеклянном меню */
+.hdr--glass .ic-blue {
+  background: rgba(99, 102, 241, 0.25);
+}
+.hdr--glass .ic-purple {
+  background: rgba(139, 92, 246, 0.25);
+}
+.hdr--glass .ic-amber {
+  background: rgba(251, 191, 36, 0.2);
+}
+.hdr--glass .ic-teal {
+  background: rgba(16, 185, 129, 0.2);
+}
+.hdr--glass .ic-violet {
+  background: rgba(124, 58, 237, 0.25);
+}
+.hdr--glass .ic-rose {
+  background: rgba(236, 72, 153, 0.2);
+}
+
+/* Content dropdown для тёмного режима */
+.hdr--glass .content-dropdown-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.hdr--glass .content-dropdown-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.hdr--glass .content-dropdown-sub {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.hdr--glass .content-dropdown-footer {
+  border-top-color: rgba(255, 255, 255, 0.1);
+  color: #a5b4fc;
+}
+
+.hdr--glass .content-dropdown-footer:hover {
+  color: #c4b5fd;
+}
+
+.hdr--glass .soon-badge {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+/* Language dropdown для тёмного режима */
+.hdr--glass .lang-dropdown {
+  background: rgba(30, 27, 75, 0.92);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.hdr--glass .lang-option {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hdr--glass .lang-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.hdr--glass .lang-option.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+.hdr--glass .lang-check {
+  color: #10b981;
+}
+
+/* ========== MEGA MENU ПОСЛЕ СКРОЛЛА - СВЕТЛЫЙ ========== */
+
+.hdr--glass.hdr--glass-offset.is-scrolled .mega-menu,
+.hdr--glass.is-scrolled .mega-menu {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-color: rgba(99, 102, 241, 0.15) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(99, 102, 241, 0.08) inset;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .mega-option:hover,
+.hdr--glass.is-scrolled .mega-option:hover {
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .option-content p,
+.hdr--glass.is-scrolled .option-content p {
+  color: #1E1B4B;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .option-content span,
+.hdr--glass.is-scrolled .option-content span {
+  color: #7B77A8;
+}
+
+/* Иконки после скролла - светлые */
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-blue,
+.hdr--glass.is-scrolled .ic-blue {
+  background: rgba(99, 102, 241, 0.12);
+}
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-purple,
+.hdr--glass.is-scrolled .ic-purple {
+  background: rgba(139, 92, 246, 0.12);
+}
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-amber,
+.hdr--glass.is-scrolled .ic-amber {
+  background: rgba(245, 158, 11, 0.12);
+}
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-teal,
+.hdr--glass.is-scrolled .ic-teal {
+  background: rgba(16, 185, 129, 0.12);
+}
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-violet,
+.hdr--glass.is-scrolled .ic-violet {
+  background: rgba(124, 58, 237, 0.12);
+}
+.hdr--glass.hdr--glass-offset.is-scrolled .ic-rose,
+.hdr--glass.is-scrolled .ic-rose {
+  background: rgba(236, 72, 153, 0.12);
+}
+
+/* Content dropdown после скролла - светлый */
+.hdr--glass.hdr--glass-offset.is-scrolled .content-dropdown-header,
+.hdr--glass.is-scrolled .content-dropdown-header {
+  border-bottom-color: rgba(99, 102, 241, 0.1);
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .content-dropdown-label,
+.hdr--glass.is-scrolled .content-dropdown-label {
+  color: rgba(55, 48, 163, 0.5);
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .content-dropdown-sub,
+.hdr--glass.is-scrolled .content-dropdown-sub {
+  background: rgba(245, 158, 11, 0.12);
+  color: #D97706;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .content-dropdown-footer,
+.hdr--glass.is-scrolled .content-dropdown-footer {
+  border-top-color: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .content-dropdown-footer:hover,
+.hdr--glass.is-scrolled .content-dropdown-footer:hover {
+  color: #3730A3;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .soon-badge,
+.hdr--glass.is-scrolled .soon-badge {
+  background: rgba(245, 158, 11, 0.12);
+  color: #D97706;
+}
+
+/* Language dropdown после скролла - светлый */
+.hdr--glass.hdr--glass-offset.is-scrolled .lang-dropdown,
+.hdr--glass.is-scrolled .lang-dropdown {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border-color: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .lang-option,
+.hdr--glass.is-scrolled .lang-option {
+  color: #4A4580;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .lang-option:hover,
+.hdr--glass.is-scrolled .lang-option:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: #3730A3;
+}
+
+.hdr--glass.hdr--glass-offset.is-scrolled .lang-option.active,
+.hdr--glass.is-scrolled .lang-option.active {
+  background: rgba(99, 102, 241, 0.12);
+  color: #4F46E5;
+}
+
+/* ========== АНИМАЦИИ ========== */
+
+.hdr--glass .mega-menu,
+.hdr--glass .lang-dropdown {
+  animation: glassFadeIn 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+@keyframes glassFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Плавный переход для всех элементов */
+.hdr--glass,
+.hdr--glass .mega-menu,
+.hdr--glass .lang-dropdown,
+.hdr--glass .hdr-nav-btn,
+.hdr--glass .lang-btn,
+.hdr--glass .profile-btn,
+.hdr--glass .burger,
+.hdr--glass .brand-text {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .hdr--glass.hdr--glass-offset.is-scrolled {
+    width: calc(100% - 24px);
+    left: 12px;
+    right: 12px;
+    border-radius: 20px;
+    top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hdr--glass.hdr--glass-offset.is-scrolled {
+    width: calc(100% - 16px);
+    left: 8px;
+    right: 8px;
+    border-radius: 16px;
+    top: 8px;
+  }
+}
+/* Улучшение производительности инпутов */
+.split-field input {
+  will-change: border-color, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Предотвращение перерендеров при вводе */
+.split-form {
+  contain: layout style paint;
+}
+/* ═══════════════════════════════════════
+   HIVER ASSISTANT BUTTON
+═══════════════════════════════════════ */
+.hiver-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.08);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+.hiver-btn:hover {
+  background: rgba(99, 102, 241, 0.16);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+}
+.hiver-btn--active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(139, 92, 246, 0.18));
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+.hiver-btn-icon {
+  font-size: 13px;
+  color: #818cf8;
+}
+.hiver-btn-label { display: none; }
+
+/* Light variant */
+.hdr--light .hiver-btn,
+.hdr--glass .hiver-btn {
+  border-color: rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.06);
+}
+.hdr--light .hiver-btn:hover,
+.hdr--glass .hiver-btn:hover {
+  background: rgba(99, 102, 241, 0.13);
+  border-color: rgba(99, 102, 241, 0.38);
+}
+.hdr--light .hiver-btn-label,
+.hdr--glass .hiver-btn-label { color: #4f46e5; }
+.hdr--light .hiver-btn-icon,
+.hdr--glass .hiver-btn-icon  { color: #6366f1; }
+
+/* Mobile: скрываем label, оставляем иконку */
+@media (max-width: 768px) {
+  .hiver-btn { width: 32px; height: 32px; border-radius: 9px; }
+}

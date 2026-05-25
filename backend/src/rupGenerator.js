@@ -1,0 +1,48 @@
+async function generateRUP(data) {
+  const subject = data.subject || data.originalPrompt || 'Дисциплина';
+  return {
+    subject,
+    code: data.code || '',
+    cycle: data.cycle || '',
+    module: data.module || '',
+    moduleName: data.moduleName || '',
+    credits: data.credits || '5',
+    semester: data.semester || '5',
+    program: data.program || '',
+    department: data.department || '',
+    headOfDepartment: data.headOfDepartment || '',
+    chairman: data.chairman || '',
+    protocolNum: '12',
+    protocolDate: '',
+    approvalNum: '6',
+    approvalDate: '',
+    teacherInfo: '',
+    characteristic: '',
+    descriptionAndGoals: '',
+    tasks: '',
+    prerequisites: '',
+    postrequisites: '',
+    lectureTopics: [],
+    labTopics: [],
+    practicalTopics: [],
+    seminarTopics: [],
+    useSeminars: false,
+    courseProjectTopics: '',
+    learningOutcomes: '',
+    literature: '',
+    gradingCriteria: '',
+    policies: '',
+    schedule: '',
+    sroTasks: '',
+    sropPlan: '',
+    thematicPlan: '',
+    hours: { lectures: 15, lab: 30, practical: 0, srop: 20, sro: 85, exam: 5, total: 150, contactHours: 70 },
+    totalHours: 150,
+    hasCourseProject: true,
+    language: data.language || 'russian',
+    customSections: [],
+    meta: { generatedAt: new Date().toISOString(), subject }
+  };
+}
+
+module.exports = { generateRUP };
